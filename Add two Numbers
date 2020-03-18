@@ -1,0 +1,210 @@
+You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+
+You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+Example:
+
+Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
+Output: 7 -> 0 -> 8
+Explanation: 342 + 465 = 807.
+
+
+
+
+
+
+Code ................
+
+
+package Damon;
+
+public class hello {
+	Node head1=null;
+	Node head2=null;
+	Node head=null;
+	
+	class Node
+	{
+		int data;
+		Node next=null;
+	}
+	
+	private void insert1(int data)
+	{
+		Node new_node=new Node();
+		new_node.data=data;
+		
+		
+		if(head1==null)
+		{
+			head1=new_node;
+		}
+		
+		else
+		{
+			Node temp=head1;
+			
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			temp.next=new_node;
+		}
+		
+	}
+	
+	private void insert2(int data)
+	{
+		Node new_node=new Node();
+		new_node.data=data;
+		
+		
+		if(head2==null)
+		{
+			head2=new_node;
+		}
+		
+		else
+		{
+			Node temp=head2;
+			
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			temp.next=new_node;
+		}
+		
+	}
+	
+	private void show (Node head)
+	{
+		Node temp=head;
+		
+		while (temp!=null)
+		{
+			System.out.print(temp.data+" ");
+			temp=temp.next;
+			
+		}
+	}
+
+	public static void main(String[] args) {
+		
+		hello obj1=new hello();
+		hello obj2=new hello();
+		
+//		Inserting in the 1st list.....
+		
+		obj1.insert1(2);
+		obj1.insert1(4);
+		obj1.insert1(3);
+		
+		
+//	Inserting in the 2nd list..........
+		
+		obj2.insert2(5);
+		obj2.insert2(6);
+		obj2.insert2(4);
+
+		
+		System.out.println("The first list is :");
+		obj1.show(obj1.head1);
+		System.out.println("The second list is :");
+		obj2.show(obj2.head2);
+		
+		Node temp=obj1.addTwoNumbers(obj1.head1,obj2.head2);
+		System.out.println("The list is");
+		obj1.show(temp);
+		
+		
+		
+		
+		
+
+	}
+	 
+    public Node addTwoNumbers(Node l1, Node l2) {
+        
+        int size=0;
+        Node temp=l1;
+        while(temp!=null)
+        {
+            temp=temp.next;
+            size++;
+        }
+        
+        System.out.println("The size of the array is :"+size);
+        
+        int[] result=new int[size];
+        int i=0;
+        Node temp1=l1;
+        Node temp2=l2;
+        
+        
+        while(temp1!=null && temp2!=null)
+        {
+            
+            result[i]=temp1.data+temp2.data;
+            i++;
+            temp1=temp1.next;
+            temp2=temp2.next;
+            
+        }
+        
+        for(i=0;i<result.length;i++)
+        {
+            if(result[i]>9)
+            {
+                result[i-1]=result[i-1]+result[i]/10;
+                result[i]=result[i]%10;
+            }
+        }
+        
+        for(int k=0;k<result.length;k++)
+        {
+        	System.out.println(result[k]);
+        }
+        
+        for(int l=0;l<result.length;l++)
+        {
+        	insert(result[l]);
+        }
+        
+        
+        
+        
+     
+        
+        
+        return head;
+        
+        
+    }
+    
+    
+    private void insert(int data)
+    {
+        Node node=new Node();
+        node.data=data;
+        node.next=null;
+        
+        if(head==null)
+        {
+            head=node;
+        }
+        
+        else 
+        {
+            Node temp=head;
+            while(temp.next!=null)
+            {
+                temp=temp.next;
+            }
+            
+            temp.next=node;
+
+            }
+    }
+
+}
