@@ -1,0 +1,64 @@
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
+Example 1:
+
+Input: 121
+Output: true
+
+Example 2:
+
+Input: -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+
+
+
+
+
+code.....................
+
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        
+        boolean bool=false;
+        ArrayList list=new ArrayList();
+        
+        if(x>10 )
+        {
+            while(x!=0)
+            {
+                list.add(x%10);
+                x=x/10;
+            }
+            int j=list.size()-1;
+            int i=0;
+            
+            while(i<j)
+            {
+                if(list.get(i)!=list.get(j))
+                {
+                    bool=false;
+                    return bool; 
+                }
+                else 
+                {
+                    bool=true;
+                    i++;
+                    j--;
+                }
+                
+            }
+        }
+        
+        else if(x>=0 && x<10)
+        {
+            bool=true;
+        }
+        
+        
+        
+        return bool;
+        
+    }
+}
