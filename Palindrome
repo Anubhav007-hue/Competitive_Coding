@@ -24,6 +24,8 @@ class Solution {
         boolean bool=false;
         ArrayList list=new ArrayList();
         
+        // For numbers greater than 10 because single digit number are always palindrome..
+        
         if(x>10 )
         {
             while(x!=0)
