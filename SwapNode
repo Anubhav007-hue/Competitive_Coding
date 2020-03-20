@@ -1,0 +1,58 @@
+Given a linked list, swap every two adjacent nodes and return its head.
+
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+
+ 
+
+Example:
+
+Given 1->2->3->4, you should return the list as 2->1->4->3.
+
+
+
+code.......................
+
+
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        
+        ListNode temp=head;
+        
+//         Getting the size of the list ....
+        
+        int size=0;
+        
+        while(temp!=null)
+        {
+            size++;
+            temp=temp.next;
+        }
+        temp=head;
+        
+//         Swapping the node.....
+
+
+        int temp1=0;
+        if(size%2==0){
+        while(temp!=null){
+            temp1=temp.val;
+            temp.val=temp.next.val;
+            temp.next.val=temp1;
+            
+            temp=temp.next.next;
+        }
+        }
+        
+        else 
+        {
+            while(temp.next!=null){
+            temp1=temp.val;
+            temp.val=temp.next.val;
+            temp.next.val=temp1;
+            
+            temp=temp.next.next;
+        }
+        }
+        return head;
+    }
+}
