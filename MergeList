@@ -1,0 +1,89 @@
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+
+Example:
+
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+
+
+
+Code...........................
+
+
+class Solution {
+    ListNode head_new=null;
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        
+        ListNode temp=null;
+        int size1=0;
+        int size2=0;
+//         Getting the size of the first list..
+        temp=l1;
+        while(temp!=null)
+        {
+            size1++;
+            temp=temp.next;
+        }
+        temp=l2;
+//         Getting the size of the second list...
+        while(temp!=null)
+        {
+            size2++;
+            temp=temp.next;
+        }
+   
+        int [] sorted=new int[size1+size2];
+        int i=0;
+        
+        temp=l1;
+        while(temp!=null)
+        {
+            sorted[i++]=temp.val;
+            temp=temp.next;
+        }
+        
+        temp=l2;
+        while(temp!=null)
+        {
+            sorted[i++]=temp.val;
+            temp=temp.next;
+            
+        }
+        
+        Arrays.sort(sorted);
+        
+        for(i=0;i<sorted.length;i++)
+        {
+            insert(sorted[i]);
+        }
+        
+        
+        return head_new;
+        
+        
+        
+        
+        
+    }
+    
+    private void insert(int data )
+    {
+        ListNode new_node=new ListNode(data);
+        if(head_new==null)
+        {
+            head_new=new_node;
+        }
+        
+        else
+        {
+            ListNode temp=head_new;
+            
+            while(temp.next!=null)
+            {
+                temp=temp.next;
+            }
+            temp.next=new_node;
+        }
+        
+    }
+}
