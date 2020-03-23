@@ -1,1 +1,8 @@
+HashMap<integer,string> hash_map=new HashMap<integer,string>();
+HashSet<integer> hash_set=new HashSet<integer>();
+List<integer,string> list=new ArrayList();
+                         =new LinkedList();
+                         
+Arrays.sort(arr);  //To sort the array ....
 
+String str=new String(arr);  // To convert the array into string ..
