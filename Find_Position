@@ -1,0 +1,91 @@
+Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+
+Your algorithm's runtime complexity must be in the order of O(log n).
+
+If the target is not found in the array, return [-1, -1].
+
+Example 1:
+
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+
+Example 2:
+
+Input: nums = [5,7,7,8,8,10], target = 6
+Output: [-1,-1]
+
+
+
+Code .........................
+
+
+
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+    
+        int [] arr={-1,-1};
+        int i=0;
+        int k=0;
+        boolean bool=false;
+        int length =nums.length;
+        
+        
+//         Checking if the array is empty pr not 
+        
+        if(length==0)
+        {
+            return arr;
+        }
+        
+//         Traversing till we find the target ....
+        
+        while(bool!=true)
+        {
+            if(nums[i]==target)
+            {
+                arr[k++]=i;
+                bool=true;
+            }
+//             Breaking the loop to go into infintie looping /..
+            
+            else if(i==nums.length-1)
+            {
+                bool=true;
+            }
+    
+            else 
+            {
+                i++;
+            }
+        }
+        
+//         Checking if the first element is -1 then target is not found and thus returning the default values ..
+        
+        if(arr[0]==-1)
+        {
+            return arr;
+        }
+        
+        else 
+        {
+            bool =false;
+            i=nums.length-1;
+            while(bool!=true)
+            {
+                if(nums[i]==target)
+                {
+                    arr[k]=i;
+                    bool=true;
+                }
+                else 
+                {
+                    i--;
+                }
+            }
+        }
+        
+        return arr;
+        
+        
+    }
+}
