@@ -1,0 +1,156 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+class Node
+{
+    int key;
+    Node left, right;
+
+    Node(int item)
+    {
+        key = item;
+        left = right = null;
+    }
+}
+
+class BinaryTree
+{
+    Node root;
+int sum=0;
+int count =1;
+int leafCount=0;
+
+
+    public static void main(String args[])
+    {
+        BinaryTree tree = new BinaryTree();
+        tree.root = new Node(5);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(6);
+        tree.root.left.left = new Node(1);
+        tree.root.left.right = new Node(4);
+        tree.root.left.right.left = new Node(3);
+        tree.root.right.right = new Node(8);
+        tree.root.right.right.right = new Node(9);
+        tree.root.right.right.left = new Node(7);
+        tree.leftView(tree.root);
+    }
+
+    private int  sum(Node root)
+    {
+        if(root==null)
+        {
+            return 0;
+        }
+        sum(root.left);
+        sum=sum+root.key;
+        sum(root.right);
+        return sum;
+
+
+
+    }
+
+    private int diffrence(Node root)
+    {
+        if(root==null)
+        {
+            return 0;
+        }
+
+        return root.key- diffrence(root.left)-diffrence(root.right);
+    }
+
+    private int count(Node root) {
+        if(root==null)
+        {
+            return 0;
+        }
+
+
+
+        return count+count(root.left)+count(root.right);
+
+
+
+    }
+
+    private int leaf_count(Node root)
+    {
+        if(root==null)
+        {
+
+            return 0;
+        }
+
+        if(root.left==null && root.right==null)
+        {
+            return 1;
+        }
+
+
+
+        return leaf_count(root.left)+leaf_count(root.right);
+
+
+
+    }
+
+    private void print_level(Node root,int level )
+    {
+        if(root==null)
+        {
+            return ;
+        }
+
+        if(level==1)
+        {
+            System.out.println(root.key);
+            return ;
+        }
+        print_level(root.left,level-1);
+        print_level(root.right,level-1);
+
+
+    }
+
+    private void leftView(Node root)
+    {
+        List<Integer> left_view=new ArrayList<>();
+        if(root==null)
+        {
+            System.out.println("NO tree found");
+        }
+        Queue<Node> queue=new LinkedList<>();
+
+        queue.add(root);
+
+        while(!queue.isEmpty())
+        {
+            int size=queue.size();
+
+            for(int i=0;i<size;i++)
+            {
+                Node current=queue.remove();
+                if(i==0)
+                {
+                    System.out.println(current.key);
+                }
+
+                if(current.left!=null)
+                {
+                    queue.add(current.left);
+                }
+
+                if(current.right!=null)
+                {
+                    queue.add(current.right);
+                }
+            }
+        }
+    }
+
+
+}
